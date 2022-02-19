@@ -15,9 +15,7 @@ ROS drivers for OnRobot Grippers
 
 # Usage
 
-    $ roscore
-    $ rosrun onrobot_rg_control OnRobotRGStatusListener.py
-    $ rosrun onrobot_rg_control OnRobotRGTcpNode.py
+    $ roslaunch onrobot_rg_control bringup.launch 
     $ rosrun onrobot_rg_control OnRobotRGSimpleController.py
 
 # Author / Contributor
