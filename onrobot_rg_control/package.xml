@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>onrobot_rg_control</name>
+  <version>1.0.0</version>
+  <description>Package to control an OnRobot RG gripper</description>
+  <maintainer email="kiyokawa@hlab.sys.es.osaka-u.ac.jp">Takuya Kiyokawa</maintainer>
+  <author email="kiyokawa@hlab.sys.es.osaka-u.ac.jp">Takuya Kiyokawa</author>
+  <license>MIT</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>rospy</depend>
+  <depend>onrobot_rg_modbus_tcp</depend>
+</package>

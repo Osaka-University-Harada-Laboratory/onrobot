@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>onrobot_rg_modbus_tcp</name>
+  <version>1.0.0</version>
+  <description>A stack to communicate with OnRobot RG grippers using the ModbusTCP protocol</description>
+  <maintainer email="kiyokawa@hlab.sys.es.osaka-u.ac.jp">Takuya Kiyokawa</maintainer>
+  <author email="kiyokawa@hlab.sys.es.osaka-u.ac.jp">Takuya Kiyokawa</author>
+  <license>MIT</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>python3-pymodbus</depend>
+  <depend>rospy</depend>
+</package>
