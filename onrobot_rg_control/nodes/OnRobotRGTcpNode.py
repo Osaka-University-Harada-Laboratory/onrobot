@@ -42,7 +42,7 @@ if __name__ == '__main__':
         ip = rospy.get_param('/onrobot/ip', '192.168.1.1')
         port = rospy.get_param('/onrobot/port', '502')
         gtype = rospy.get_param('/onrobot/gripper', 'rg6')
-        dummy = rospy.get_param('/onrobot/dummy', True)
+        dummy = rospy.get_param('/onrobot/dummy', False)
         mainLoop()
     except rospy.ROSInterruptException:
         pass
