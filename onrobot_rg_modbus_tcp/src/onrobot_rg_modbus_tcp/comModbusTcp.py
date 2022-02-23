@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
 """
 Module comModbusTcp: defines a class which communicates with
-OnRobot Grippers using the Modbus TCP protocol.
+OnRobot Grippers using the Modbus/TCP protocol.
 """
 
 import sys
 import time
 import rospy
 import threading
-from math import ceil
 from pymodbus.client.sync import ModbusTcpClient
 
 

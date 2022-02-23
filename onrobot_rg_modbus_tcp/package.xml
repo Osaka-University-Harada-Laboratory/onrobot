@@ -2,7 +2,7 @@
 <package format="3">
   <name>onrobot_rg_modbus_tcp</name>
   <version>1.0.0</version>
-  <description>A stack to communicate with OnRobot RG grippers using the ModbusTCP protocol</description>
+  <description>A stack to communicate with OnRobot RG grippers using the Modbus/TCP protocol</description>
   <maintainer email="kiyokawa@hlab.sys.es.osaka-u.ac.jp">Takuya Kiyokawa</maintainer>
   <author email="kiyokawa@hlab.sys.es.osaka-u.ac.jp">Takuya Kiyokawa</author>
   <license>MIT</license>

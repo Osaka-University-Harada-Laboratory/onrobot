@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-import sys
 import rospy
 import onrobot_vg_modbus_tcp.comModbusTcp
 import onrobot_vg_control.baseOnRobotVG
