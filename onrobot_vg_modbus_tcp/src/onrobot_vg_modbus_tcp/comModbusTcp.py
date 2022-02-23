@@ -64,11 +64,12 @@ class communication:
             return
 
         # Send a command to the device (address 0 ~ 1)
-        command = [message[0]+message[1],
-                   message[2]+message[3]]
-        with self.lock:
-            self.client.write_registers(
-                address=0, value=command, unit=65)
+        if message != []:
+            command = [message[0]+message[1],
+                       message[2]+message[3]]
+            with self.lock:
+                self.client.write_registers(
+                    address=0, values=command, unit=65)
 
     def getStatus(self):
         """Sends a request to read, wait for the response
@@ -86,7 +87,7 @@ class communication:
         # Get status from the device (address 258 ~ 259)
         with self.lock:
             response = self.client.read_holding_registers(
-                address=258, count=2, unit=65)
+                address=258, count=2, unit=65).registers
 
         # Output the result
         return response

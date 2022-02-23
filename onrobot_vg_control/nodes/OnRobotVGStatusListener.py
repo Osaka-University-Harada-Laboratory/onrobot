@@ -13,7 +13,7 @@ def printStatus(status):
 def OnRobotVGStatusListener():
     """Initialize the node and subscribe to the OnRobotVGInput topic."""
 
-    rospy.init_node('OnRobotVGStatusListener')
+    rospy.init_node('OnRobotVGStatusListener', log_level=rospy.DEBUG)
     rospy.Subscriber("OnRobotVGInput", OnRobotVGInput, printStatus)
     rospy.spin()
 

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import rospy
 from onrobot_vg_msgs.msg import OnRobotVGInput
 
 

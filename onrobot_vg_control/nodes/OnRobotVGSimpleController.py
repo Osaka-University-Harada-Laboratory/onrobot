@@ -57,7 +57,7 @@ def askForCommand(command):
     currentCommand += ', rMCB = ' + str(command.rMCB)
     currentCommand += ', rVCB = ' + str(command.rVCB)
 
-    print(currentCommand)
+    rospy.loginfo(currentCommand)
 
     strAskForCommand = '-----\nAvailable commands\n\n'
     strAskForCommand += 'g: Turn on all channels\n'
@@ -78,7 +78,7 @@ def publisher():
        publish them on the OnRobotVGOutput topic.
     """
 
-    rospy.init_node('OnRobotVGSimpleController')
+    rospy.init_node('OnRobotVGSimpleController', log_level=rospy.DEBUG)
     pub = rospy.Publisher('OnRobotVGOutput', OnRobotVGOutput)
     command = OnRobotVGOutput()
 

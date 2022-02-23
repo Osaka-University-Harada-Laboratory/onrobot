@@ -15,7 +15,7 @@ def mainLoop():
 
     # Connects to the ip address received as an argument
     gripper.client.connectToDevice(ip, port)
-    rospy.init_node('OnRobotVGTcpNode')
+    rospy.init_node('OnRobotVGTcpNode', log_level=rospy.DEBUG)
 
     # The Gripper status is published on the topic named 'OnRobotVGInput'
     pub = rospy.Publisher('OnRobotVGInput', OnRobotVGInput, queue_size=1)
