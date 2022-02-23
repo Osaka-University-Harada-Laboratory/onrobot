@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import rospy
 from onrobot_rg_msgs.msg import OnRobotRGInput
 
 
@@ -80,8 +81,8 @@ class onrobotbaseRG:
 
         # Assign the values to their respective variables
         message.gFOF = status[0]
-        message.gSTA = status[9]
-        message.gGWD = status[10]
+        message.gGWD = status[9]
+        message.gSTA = status[10]
         message.gWDF = status[17]
 
         return message

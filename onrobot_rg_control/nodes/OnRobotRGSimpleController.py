@@ -19,22 +19,30 @@ def genCommand(char, command):
             ": Select the gripper type from rg2 or rg6.")
 
     if char == 'c':
+        command.rGFR = 400
         command.rGWD = 0
+        command.rCTR = 16
     if char == 'o':
+        command.rGFR = 400
         command.rGWD = max_width
+        command.rCTR = 16
 
     # If the command entered is a int, assign this value to rGWD
     try:
+        command.rGFR = 400
         command.rGWD = min(max_width, int(char))
+        command.rCTR = 16
     except ValueError:
         pass
 
     if char == 'i':
         command.rGFR += 25
         command.rGFR = min(max_force, command.rGFR)
+        command.rCTR = 16
     if char == 'd':
         command.rGFR -= 25
         command.rGFR = max(0, command.rGFR)
+        command.rCTR = 16
 
     return command
 
@@ -47,7 +55,7 @@ def askForCommand(command):
     currentCommand += ', rGWD = ' + str(command.rGWD)
     currentCommand += ', rCTR = ' + str(command.rCTR)
 
-    print(currentCommand)
+    rospy.loginfo(currentCommand)
 
     strAskForCommand = '-----\nAvailable commands\n\n'
     strAskForCommand += 'c: Close\n'
@@ -66,7 +74,7 @@ def publisher():
        publish them on the OnRobotRGOutput topic.
     """
 
-    rospy.init_node('OnRobotRGSimpleController')
+    rospy.init_node('OnRobotRGSimpleController', log_level=rospy.DEBUG)
     pub = rospy.Publisher('OnRobotRGOutput', OnRobotRGOutput)
     command = OnRobotRGOutput()
 
