@@ -5,7 +5,7 @@ from onrobot_rg_msgs.msg import OnRobotRGOutput
 
 
 def genCommand(char, command):
-    """Update the command according to the character entered by the user."""
+    """Updates the command according to the character entered by the user."""
 
     if gtype == 'rg2':
         max_force = 400
@@ -48,7 +48,7 @@ def genCommand(char, command):
 
 
 def askForCommand(command):
-    """Ask the user for a command to send to the gripper."""
+    """Asks the user for a command to send to the gripper."""
 
     currentCommand = 'Simple OnRobot RG Controller\n-----\nCurrent command:'
     currentCommand += ' rGFR = ' + str(command.rGFR)
@@ -75,7 +75,7 @@ def publisher():
     """
 
     rospy.init_node('OnRobotRGSimpleController', log_level=rospy.DEBUG)
-    pub = rospy.Publisher('OnRobotRGOutput', OnRobotRGOutput)
+    pub = rospy.Publisher('OnRobotRGOutput', OnRobotRGOutput, queue_size=1)
     command = OnRobotRGOutput()
 
     while not rospy.is_shutdown():

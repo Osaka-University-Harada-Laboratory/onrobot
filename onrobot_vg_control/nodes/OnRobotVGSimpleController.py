@@ -5,7 +5,7 @@ from onrobot_vg_msgs.msg import OnRobotVGOutput
 
 
 def genCommand(char, command):
-    """Update the command according to the character entered by the user."""
+    """Updates the command according to the character entered by the user."""
 
     if char == 'g':
         command.rMCA = 0x0100
@@ -49,7 +49,7 @@ def genCommand(char, command):
 
 
 def askForCommand(command):
-    """Ask the user for a command to send to the gripper."""
+    """Asks the user for a command to send to the gripper."""
 
     currentCommand = 'Simple OnRobot VG Controller\n-----\nCurrent command:'
     currentCommand += ' rMCA = ' + str(command.rMCA)
@@ -79,7 +79,7 @@ def publisher():
     """
 
     rospy.init_node('OnRobotVGSimpleController', log_level=rospy.DEBUG)
-    pub = rospy.Publisher('OnRobotVGOutput', OnRobotVGOutput)
+    pub = rospy.Publisher('OnRobotVGOutput', OnRobotVGOutput, queue_size=1)
     command = OnRobotVGOutput()
 
     while not rospy.is_shutdown():
