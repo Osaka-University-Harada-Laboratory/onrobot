@@ -17,12 +17,20 @@ ROS drivers for OnRobot Grippers
 # Usage
 
 ### RG2 / RG6
+
+##### Send motion commands
     $ roslaunch onrobot_rg_control bringup.launch 
     $ rosrun onrobot_rg_control OnRobotRGSimpleController.py
 
+##### Visualize a model
+    $ roslaunch onrobot_rg6_visualization disp_onrobot_rg6_model.launch
+
 ### VG10 / VGC10
+
+##### Send motion commands
     $ roslaunch onrobot_vg_control bringup.launch 
     $ rosrun onrobot_vg_control OnRobotVGSimpleController.py  
+
 
 # Author / Contributor
 
