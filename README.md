@@ -31,6 +31,8 @@ ROS drivers for OnRobot Grippers
     $ roslaunch onrobot_vg_control bringup.launch 
     $ rosrun onrobot_vg_control OnRobotVGSimpleController.py  
 
+##### Visualize a model
+    $ roslaunch onrobot_vgc10_visualization disp_onrobot_vgc10_model.launch
 
 # Author / Contributor
 
