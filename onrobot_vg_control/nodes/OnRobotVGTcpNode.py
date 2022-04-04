@@ -25,6 +25,7 @@ def mainLoop():
                      gripper.refreshCommand)
 
     # We loop
+    prev_msg = []
     while not rospy.is_shutdown():
         # Get and publish the Gripper status
         status = gripper.getStatus()
@@ -32,7 +33,9 @@ def mainLoop():
 
         rospy.sleep(0.05)
         # Send the most recent command
-        gripper.sendCommand()
+        if not prev_msg == gripper.message:  # find new message
+            rospy.loginfo(rospy.get_name()+": Sending message.")
+            gripper.sendCommand()
         rospy.sleep(0.05)
 
 

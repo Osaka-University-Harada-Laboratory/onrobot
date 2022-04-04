@@ -22,27 +22,26 @@ def genCommand(char, command):
         command.rGFR = 400
         command.rGWD = 0
         command.rCTR = 16
-    if char == 'o':
+    elif char == 'o':
         command.rGFR = 400
         command.rGWD = max_width
         command.rCTR = 16
-
-    # If the command entered is a int, assign this value to rGWD
-    try:
-        command.rGFR = 400
-        command.rGWD = min(max_width, int(char))
-        command.rCTR = 16
-    except ValueError:
-        pass
-
-    if char == 'i':
+    elif char == 'i':
         command.rGFR += 25
         command.rGFR = min(max_force, command.rGFR)
         command.rCTR = 16
-    if char == 'd':
+    elif char == 'd':
         command.rGFR -= 25
         command.rGFR = max(0, command.rGFR)
         command.rCTR = 16
+    else:
+        # If the command entered is a int, assign this value to rGWD
+        try:
+            command.rGFR = 400
+            command.rGWD = min(max_width, int(char))
+            command.rCTR = 16
+        except ValueError:
+            pass
 
     return command
 

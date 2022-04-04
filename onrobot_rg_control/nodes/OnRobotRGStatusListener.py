@@ -39,7 +39,7 @@ def statusInterpreter(status):
     gSTA16bit = format(status.gSTA, '016b')
     output += '(gSTA (16 bit) = ' + gSTA16bit + '), Currtent states: '
     if int(gSTA16bit[-1]):
-        output += ' Any motion is not ongoing so new commands are accepted.'
+        output += ' A motion is ongoing so new commands are not accepted.'
     if int(gSTA16bit[-2]):
         output += ' An internal- or external grip is detected.'
     if int(gSTA16bit[-3]):
