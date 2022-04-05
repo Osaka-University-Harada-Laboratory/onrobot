@@ -24,6 +24,7 @@ ROS drivers for OnRobot Grippers
 
 ##### Visualize a model
     $ roslaunch onrobot_rg6_visualization disp_onrobot_rg6_model.launch
+    $ roslaunch onrobot_rg2_visualization disp_onrobot_rg2_model.launch
 
 ### VG10 / VGC10
 
