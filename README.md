@@ -2,19 +2,19 @@
 
 ROS drivers for OnRobot Grippers
 
-# Features
+## Features
 
 - ROS Noetic (Python3)
 - Controler for OnRobot RG2 / RG6 via Modbus/TCP
 - Controler for OnRobot VG10 / VGC10 via Modbus/TCP
 
-# Installation
+## Installation
 
 	$ git clone git@github.com:takuya-ki/onrobot.git catkin_ws/src; cd catkin_ws
 	$ sudo rosdep install --from-paths ./src --ignore-packages-from-source --rosdistro noetic -y --os=ubuntu:focal -y
 	$ catkin build -DPYTHON_EXECUTABLE=/usr/bin/python3
 
-# Usage
+## Usage
 
 1. Connect the cable between Compute Box and Tool Changer
 2. Connect an ethernet cable between Compute Box and your computer
@@ -40,6 +40,10 @@ ROS drivers for OnRobot Grippers
     $ roslaunch onrobot_vgc10_visualization disp_onrobot_vgc10_model.launch
     $ roslaunch onrobot_vg10_visualization disp_onrobot_vg10_model.launch
 
-# Author / Contributor
+## Author / Contributor
 
 [Takuya Kiyokawa](https://takuya-ki.github.io/)
+
+## License
+
+This software is released under the MIT License, see [LICENSE](./LICENSE).
