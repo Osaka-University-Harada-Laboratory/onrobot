@@ -5,8 +5,8 @@ ROS drivers for OnRobot Grippers
 ## Features
 
 - ROS Noetic (Python3)
-- Controler for OnRobot RG2 / RG6 via Modbus/TCP
-- Controler for OnRobot VG10 / VGC10 via Modbus/TCP
+- Controller for OnRobot RG2 / RG6 via Modbus/TCP
+- Controller for OnRobot VG10 / VGC10 via Modbus/TCP
 
 ## Installation
 
