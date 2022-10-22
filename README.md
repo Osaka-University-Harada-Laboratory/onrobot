@@ -1,6 +1,6 @@
 # onrobot
 
-ROS drivers for OnRobot Grippers
+ROS drivers for OnRobot Grippers.
 
 ## Features
 
@@ -18,7 +18,7 @@ ROS drivers for OnRobot Grippers
 
 1. Connect the cable between Compute Box and Tool Changer
 2. Connect an ethernet cable between Compute Box and your computer
-3. Execute programs
+3. Execute programs (Please refer to [onrobot/Tutorials](http://wiki.ros.org/onrobot/Tutorials))
 
 ### RG2 / RG6
 
