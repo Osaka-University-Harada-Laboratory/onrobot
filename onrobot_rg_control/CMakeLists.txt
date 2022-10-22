@@ -12,6 +12,11 @@ add_message_files(
     OnRobotRGOutput.msg
 ) 
 
+add_service_files(
+  FILES
+  SetCommand.srv
+)
+
 catkin_python_setup()
 
 generate_messages(
@@ -27,5 +32,9 @@ catkin_package(
 )
 
 catkin_install_python(
-    PROGRAMS nodes/OnRobotRGSimpleController.py nodes/OnRobotRGStatusListener.py
-    nodes/OnRobotRGTcpNode.py DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+    PROGRAMS
+    nodes/OnRobotRGSimpleController.py
+    nodes/OnRobotRGStatusListener.py
+    nodes/OnRobotRGTcpNode.py
+    nodes/OnRobotRGSimpleControllerServer.py
+    DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
