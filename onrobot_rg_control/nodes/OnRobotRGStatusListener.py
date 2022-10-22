@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import rospy
-from onrobot_rg_msgs.msg import OnRobotRGInput
+from onrobot_rg_control.msg import OnRobotRGInput
 
 
 def printStatus(status):

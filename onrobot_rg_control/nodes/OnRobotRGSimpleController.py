@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import rospy
-from onrobot_rg_msgs.msg import OnRobotRGOutput
+from onrobot_rg_control.msg import OnRobotRGOutput
 
 
 def genCommand(char, command):

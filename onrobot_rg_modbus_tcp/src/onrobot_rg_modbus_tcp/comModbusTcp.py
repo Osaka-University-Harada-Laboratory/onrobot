@@ -5,7 +5,6 @@ OnRobot Grippers using the Modbus/TCP protocol.
 """
 
 import sys
-import time
 import rospy
 import threading
 from pymodbus.client.sync import ModbusTcpClient

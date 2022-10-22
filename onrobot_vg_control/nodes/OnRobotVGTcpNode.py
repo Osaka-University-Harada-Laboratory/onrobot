@@ -3,8 +3,8 @@
 import rospy
 import onrobot_vg_modbus_tcp.comModbusTcp
 import onrobot_vg_control.baseOnRobotVG
-from onrobot_vg_msgs.msg import OnRobotVGInput
-from onrobot_vg_msgs.msg import OnRobotVGOutput
+from onrobot_vg_control.msg import OnRobotVGInput
+from onrobot_vg_control.msg import OnRobotVGOutput
 
 
 def mainLoop():
