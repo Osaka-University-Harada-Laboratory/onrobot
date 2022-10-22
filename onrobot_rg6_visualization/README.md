@@ -12,3 +12,6 @@ $ roslaunch onrobot_rg6_visualization disp_onrobot_rg6_model.launch
 
 ## Collision model
 <img src="images/collision.png" height="300">  
+
+## Reference
+- To generate a collision model, you can use [rosmodelgen](https://github.com/takuya-ki/rosmodelgen)
