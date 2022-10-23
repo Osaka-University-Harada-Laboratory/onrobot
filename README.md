@@ -1,6 +1,7 @@
 # onrobot
 
 ROS drivers for OnRobot Grippers.
+This repository was inspired by [ros-industrial/robotiq](https://github.com/ros-industrial/robotiq).
 
 ## Features
 
@@ -23,7 +24,7 @@ ROS drivers for OnRobot Grippers.
 ### RG2 / RG6
 
 #### Send motion commands
-##### Interactive model
+##### Interactive mode
     $ roslaunch onrobot_rg_control bringup.launch gripper:=[rg2/rg6] ip:=XXX.XXX.XXX.XXX
     $ rosrun onrobot_rg_control OnRobotRGSimpleController.py
 
@@ -40,7 +41,7 @@ ROS drivers for OnRobot Grippers.
 ### VG10 / VGC10
 
 #### Send motion commands
-##### Interactive model
+##### Interactive mode
     $ roslaunch onrobot_vg_control bringup.launch ip:=YYY.YYY.YYY.YYY
     $ rosrun onrobot_vg_control OnRobotVGSimpleController.py  
 
