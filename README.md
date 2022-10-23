@@ -9,6 +9,10 @@ This repository was inspired by [ros-industrial/robotiq](https://github.com/ros-
 - Controller for OnRobot RG2 / RG6 via Modbus/TCP
 - Controller for OnRobot VG10 / VGC10 via Modbus/TCP
 
+## Dependency
+
+- pymodbus==2.1.0
+
 ## Installation
 
 	$ git clone git@github.com:takuya-ki/onrobot.git catkin_ws/src; cd catkin_ws
