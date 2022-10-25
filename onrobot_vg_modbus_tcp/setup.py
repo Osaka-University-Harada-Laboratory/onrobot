@@ -7,7 +7,7 @@ from catkin_pkg.python_setup import generate_distutils_setup
 setup_args = generate_distutils_setup(
     packages=['onrobot_vg_modbus_tcp'],
     package_dir={'': 'src'},
-    requires=['rospy', 'pymodbus==2.1.0'],
+    requires=['rospy', 'pymodbus==2.5.3'],
 )
 
 setup(**setup_args)

@@ -11,7 +11,7 @@ This repository was inspired by [ros-industrial/robotiq](https://github.com/ros-
 
 ## Dependency
 
-- pymodbus==2.1.0
+- pymodbus==2.5.3
 
 ## Installation
 
