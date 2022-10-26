@@ -37,6 +37,7 @@ This repository was inspired by [ros-industrial/robotiq](https://github.com/ros-
     $ rosrun onrobot_rg_control OnRobotRGSimpleControllerServer.py
     $ rosservice call /onrobot_rg/set_command c
     $ rosservice call /onrobot_rg/set_command o
+    $ rosservice call /onrobot_rg/set_command '!!str 300'
 
 #### Visualize a model
     $ roslaunch onrobot_rg6_visualization disp_onrobot_rg6_model.launch
@@ -54,6 +55,7 @@ This repository was inspired by [ros-industrial/robotiq](https://github.com/ros-
     $ rosrun onrobot_vg_control OnRobotVGSimpleControllerServer.py  
     $ rosservice call /onrobot_vg/set_command g
     $ rosservice call /onrobot_vg/set_command r
+    $ rosservice call /onrobot_vg/set_command '!!str 128'
 
 #### Visualize a model
     $ roslaunch onrobot_vgc10_visualization disp_onrobot_vgc10_model.launch
