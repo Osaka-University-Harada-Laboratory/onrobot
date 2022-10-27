@@ -58,7 +58,8 @@ This repository was inspired by [ros-industrial/robotiq](https://github.com/ros-
     $ rosservice call /onrobot_vg/set_command '!!str 128'
 
 #### Visualize a model
-    $ roslaunch onrobot_vgc10_visualization disp_onrobot_vgc10_model.launch
+    $ roslaunch onrobot_vgc10_visualization disp_onrobot_vgc10_1cup_model.launch
+    $ roslaunch onrobot_vgc10_visualization disp_onrobot_vgc10_4cups_model.launch
     $ roslaunch onrobot_vg10_visualization disp_onrobot_vg10_model.launch
 
 ## Author / Contributor

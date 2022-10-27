@@ -10,7 +10,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://onrobot_vgc10_visualization/meshes/visual/suction_cup.stl" />
+          <mesh filename="package://onrobot_vgc10_visualization/meshes/visual/suction_cup_1cup.stl" />
         </geometry>
         <material name="">
           <color rgba="0.9 0.9 0.9 1" />
@@ -19,7 +19,7 @@
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://onrobot_vgc10_visualization/meshes/collision/suction_cup.stl" />
+          <mesh filename="package://onrobot_vgc10_visualization/meshes/collision/suction_cup_1cup.stl" />
         </geometry>
       </collision>
     </link>
@@ -34,7 +34,7 @@
     </joint>
   </xacro:macro>
 
-  <xacro:include filename="$(find onrobot_vgc10_visualization)/urdf/onrobot_vgc10.xacro" />
+  <xacro:include filename="$(find onrobot_vgc10_visualization)/urdf/onrobot_vgc10_1cup.xacro" />
 
   <xacro:macro name="onrobot_vgc10" params="prefix">
     <xacro:onrobot_vgc10_base_link prefix="${prefix}"/>
