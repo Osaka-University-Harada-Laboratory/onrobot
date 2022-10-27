@@ -1,0 +1,23 @@
+<launch>
+  <arg name="ip"        default="192.168.1.1"/>
+  <arg name="port"      default="502"/>
+  <arg name="dummy"     default="false"/>
+
+  <param name="/onrobot/ip"         value="$(arg ip)" />
+  <param name="/onrobot/port"       value="$(arg port)" />
+  <param name="/onrobot/dummy"      value="$(arg dummy)" />
+
+  <node name="OnRobotVGStatusListener"
+        pkg="onrobot_vg_control"
+        type="OnRobotVGStatusListener.py"
+        output="screen"/>
+  <node name="OnRobotVGTcpNode"
+        pkg="onrobot_vg_control"
+        type="OnRobotVGTcpNode.py"
+        output="screen"/>
+
+  <node name="OnRobotVGSimpleControllerServer"
+        pkg="onrobot_vg_control"
+        type="OnRobotVGSimpleControllerServer.py"
+        output="screen"/>
+</launch>
