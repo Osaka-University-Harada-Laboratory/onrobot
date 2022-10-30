@@ -40,11 +40,11 @@ class OnRobotRGNode:
                 ": Select the gripper type from rg2 or rg6.")
 
         if char == 'c':
-            command.rGFR = 400
+            command.rGFR = max_force
             command.rGWD = 0
             command.rCTR = 16
         elif char == 'o':
-            command.rGFR = 400
+            command.rGFR = max_force
             command.rGWD = max_width
             command.rCTR = 16
         elif char == 'i':
@@ -58,7 +58,7 @@ class OnRobotRGNode:
         else:
             # If the command entered is a int, assign this value to rGWD
             try:
-                command.rGFR = 400
+                command.rGFR = max_force
                 command.rGWD = min(max_width, int(char))
                 command.rCTR = 16
             except ValueError:
