@@ -69,6 +69,7 @@ class OnRobotVGNode:
 
 
 if __name__ == '__main__':
-    rospy.init_node('OnRobotVGSimpleControllerServer', log_level=rospy.DEBUG)
+    rospy.init_node(
+        'OnRobotVGSimpleControllerServer', anonymous=True, log_level=rospy.DEBUG)
     node = OnRobotVGNode()
     rospy.spin()

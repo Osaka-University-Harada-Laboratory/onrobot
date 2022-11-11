@@ -17,7 +17,7 @@ class communication:
         self.dummy = dummy
         self.lock = threading.Lock()
 
-    def connectToDevice(self, ip, port):
+    def connectToDevice(self, ip, port, changer_addr=65):
         """Connects to the client.
            The method takes the IP address and port number
            (as a string, e.g. '192.168.1.1' and '502') as arguments.
@@ -37,6 +37,7 @@ class communication:
             parity='E',
             baudrate=115200,
             timeout=1)
+        self.changer_addr = changer_addr
         self.client.connect()
 
     def disconnectFromDevice(self):
@@ -67,7 +68,7 @@ class communication:
                        message[2]+message[3]]
             with self.lock:
                 self.client.write_registers(
-                    address=0, values=command, unit=65)
+                    address=0, values=command, unit=self.changer_addr)
 
     def getStatus(self):
         """Sends a request to read, wait for the response
@@ -85,7 +86,7 @@ class communication:
         # Get status from the device (address 258 ~ 259)
         with self.lock:
             response = self.client.read_holding_registers(
-                address=258, count=2, unit=65).registers
+                address=258, count=2, unit=self.changer_addr).registers
 
         # Output the result
         return response

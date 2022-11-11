@@ -73,7 +73,8 @@ def publisher():
        publish them on the OnRobotRGOutput topic.
     """
 
-    rospy.init_node('OnRobotRGSimpleController', log_level=rospy.DEBUG)
+    rospy.init_node(
+        'OnRobotRGSimpleController', anonymous=True, log_level=rospy.DEBUG)
     pub = rospy.Publisher('OnRobotRGOutput', OnRobotRGOutput, queue_size=1)
     command = OnRobotRGOutput()
 

@@ -1,11 +1,13 @@
 <launch>
-  <arg name="ip"        default="192.168.1.1"/>
-  <arg name="port"      default="502"/>
-  <arg name="dummy"     default="false"/>
+  <arg name="ip"              default="192.168.1.1"/>
+  <arg name="port"            default="502"/>
+  <arg name="changer_addr"    default="65"/>
+  <arg name="dummy"           default="false"/>
 
-  <param name="/onrobot/ip"         value="$(arg ip)" />
-  <param name="/onrobot/port"       value="$(arg port)" />
-  <param name="/onrobot/dummy"      value="$(arg dummy)" />
+  <param name="/onrobot/ip"               value="$(arg ip)" />
+  <param name="/onrobot/port"             value="$(arg port)" />
+  <param name="/onrobot/changer_addr"     value="$(arg changer_addr)" />
+  <param name="/onrobot/dummy"            value="$(arg dummy)" />
 
   <node name="OnRobotVGStatusListener"
         pkg="onrobot_vg_control"

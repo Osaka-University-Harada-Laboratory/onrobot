@@ -13,7 +13,8 @@ def printStatus(status):
 def OnRobotRGStatusListener():
     """Initializes the node and subscribe to the OnRobotRGInput topic."""
 
-    rospy.init_node('OnRobotRGStatusListener', log_level=rospy.DEBUG)
+    rospy.init_node(
+        'OnRobotRGStatusListener', anonymous=True, log_level=rospy.DEBUG)
     rospy.Subscriber("OnRobotRGInput", OnRobotRGInput, printStatus)
     rospy.spin()
 

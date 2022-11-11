@@ -69,6 +69,7 @@ class OnRobotRGNode:
 
 if __name__ == '__main__':
     gtype = rospy.get_param('/onrobot/gripper', 'rg6')
-    rospy.init_node('OnRobotRGSimpleControllerServer', log_level=rospy.DEBUG)
+    rospy.init_node(
+        'OnRobotRGSimpleControllerServer', anonymous=True, log_level=rospy.DEBUG)
     node = OnRobotRGNode()
     rospy.spin()

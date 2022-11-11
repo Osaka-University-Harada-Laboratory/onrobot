@@ -78,7 +78,8 @@ def publisher():
        publish them on the OnRobotVGOutput topic.
     """
 
-    rospy.init_node('OnRobotVGSimpleController', log_level=rospy.DEBUG)
+    rospy.init_node(
+        'OnRobotVGSimpleController', anonymous=True, log_level=rospy.DEBUG)
     pub = rospy.Publisher('OnRobotVGOutput', OnRobotVGOutput, queue_size=1)
     command = OnRobotVGOutput()
 

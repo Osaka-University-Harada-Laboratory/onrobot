@@ -13,8 +13,9 @@ def mainLoop():
     gripper.client = onrobot_vg_modbus_tcp.comModbusTcp.communication(dummy)
 
     # Connects to the ip address received as an argument
-    gripper.client.connectToDevice(ip, port)
-    rospy.init_node('OnRobotVGTcpNode', log_level=rospy.DEBUG)
+    gripper.client.connectToDevice(ip, port, changer_addr)
+    rospy.init_node(
+        'OnRobotVGTcpNode', anonymous=True, log_level=rospy.DEBUG)
 
     # The Gripper status is published on the topic named 'OnRobotVGInput'
     pub = rospy.Publisher('OnRobotVGInput', OnRobotVGInput, queue_size=1)
@@ -43,6 +44,7 @@ if __name__ == '__main__':
     try:
         ip = rospy.get_param('/onrobot/ip', '192.168.1.1')
         port = rospy.get_param('/onrobot/port', '502')
+        changer_addr = rospy.get_param('/onrobot/changer_addr', '65')
         dummy = rospy.get_param('/onrobot/dummy', False)
         mainLoop()
     except rospy.ROSInterruptException:
