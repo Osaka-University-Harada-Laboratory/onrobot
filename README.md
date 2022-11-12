@@ -14,12 +14,17 @@ This repository was inspired by [ros-industrial/robotiq](https://github.com/ros-
 
 ## Dependency
 
-- pymodbus==2.5.3
+- pymodbus==2.5.3  
+- [roboticsgroup/roboticsgroup_upatras_gazebo_plugins](https://github.com/roboticsgroup/roboticsgroup_upatras_gazebo_plugins.git)  
 
 ## Installation
 
-	$ git clone git@github.com:takuya-ki/onrobot.git catkin_ws/src; cd catkin_ws
+	$ cd catkin_ws/src
+    $ git clone git@github.com:takuya-ki/onrobot.git --depth 1
+    $ git clone https://github.com/roboticsgroup/roboticsgroup_upatras_gazebo_plugins.git
+    $ cd ../
 	$ sudo rosdep install --from-paths ./src --ignore-packages-from-source --rosdistro noetic -y --os=ubuntu:focal -y
+    $ sudo apt install ros-noetic-ros-control ros-noetic-ros-controllers
 	$ catkin build -DPYTHON_EXECUTABLE=/usr/bin/python3
 
 ## Usage
@@ -42,9 +47,16 @@ This repository was inspired by [ros-industrial/robotiq](https://github.com/ros-
     $ rosservice call /onrobot_rg/set_command o
     $ rosservice call /onrobot_rg/set_command '!!str 300'
 
-#### Visualize a model
-    $ roslaunch onrobot_rg6_visualization disp_onrobot_rg6_model.launch
-    $ roslaunch onrobot_rg2_visualization disp_onrobot_rg2_model.launch
+#### Simulation
+##### Display models
+    $ roslaunch onrobot_rg6_description disp_onrobot_rg6_model.launch
+    $ roslaunch onrobot_rg2_description disp_onrobot_rg2_model.launch
+
+##### Gazebo simulation
+    $ roslaunch onrobot_rg6_description bringup_rg6_gazebo.launch
+    $ rostopic pub -1 /onrobot_rg6/joint_position_controller/command std_msgs/Float64 "data: 0.5"
+    $ roslaunch onrobot_rg2_description bringup_rg2_gazebo.launch
+    $ rostopic pub -1 /onrobot_rg2/joint_position_controller/command std_msgs/Float64 "data: 0.5"
 
 ### VG10 / VGC10
 
@@ -60,10 +72,11 @@ This repository was inspired by [ros-industrial/robotiq](https://github.com/ros-
     $ rosservice call /onrobot_vg/set_command r
     $ rosservice call /onrobot_vg/set_command '!!str 128'
 
-#### Visualize a model
-    $ roslaunch onrobot_vgc10_visualization disp_onrobot_vgc10_1cup_model.launch
-    $ roslaunch onrobot_vgc10_visualization disp_onrobot_vgc10_4cups_model.launch
-    $ roslaunch onrobot_vg10_visualization disp_onrobot_vg10_model.launch
+#### Simulation
+##### Display models
+    $ roslaunch onrobot_vgc10_description disp_onrobot_vgc10_1cup_model.launch
+    $ roslaunch onrobot_vgc10_description disp_onrobot_vgc10_4cups_model.launch
+    $ roslaunch onrobot_vg10_description disp_onrobot_vg10_model.launch
 
 ## Author / Contributor
 
