@@ -14,40 +14,40 @@
         <mimicJoint>${prefix}left_inner_knuckle_joint</mimicJoint>
         <multiplier>-1.0</multiplier>
         <offset>0.0</offset>
-        <!-- <maxEffort>5.0</maxEffort>
-        <hasPID /> -->
+        <maxEffort>5.0</maxEffort>
+        <!-- <hasPID /> -->
       </plugin>
       <plugin filename="libroboticsgroup_upatras_gazebo_mimic_joint_plugin.so" name="mimic_${prefix}right_inner_knuckle_joint">
         <joint>${prefix}finger_joint</joint>
         <mimicJoint>${prefix}right_inner_knuckle_joint</mimicJoint>
         <multiplier>-1.0</multiplier>
         <offset>0.0</offset>
-        <!-- <maxEffort>5.0</maxEffort>
-        <hasPID /> -->
+        <maxEffort>5.0</maxEffort>
+        <!-- <hasPID /> -->
       </plugin>
       <plugin filename="libroboticsgroup_upatras_gazebo_mimic_joint_plugin.so" name="mimic_${prefix}left_inner_finger_joint">
         <joint>${prefix}finger_joint</joint>
         <mimicJoint>${prefix}left_inner_finger_joint</mimicJoint>
         <multiplier>1.0</multiplier>
         <offset>0.0</offset>
-        <!-- <maxEffort>5.0</maxEffort>
-        <hasPID /> -->
+        <maxEffort>5.0</maxEffort>
+        <!-- <hasPID /> -->
       </plugin>
       <plugin filename="libroboticsgroup_upatras_gazebo_mimic_joint_plugin.so" name="mimic_${prefix}right_inner_finger_joint">
         <joint>${prefix}finger_joint</joint>
         <mimicJoint>${prefix}right_inner_finger_joint</mimicJoint>
         <multiplier>1.0</multiplier>
         <offset>0.0</offset>
-        <!-- <maxEffort>5.0</maxEffort>
-        <hasPID /> -->
+        <maxEffort>5.0</maxEffort>
+        <!-- <hasPID /> -->
       </plugin>
       <plugin filename="libroboticsgroup_upatras_gazebo_mimic_joint_plugin.so" name="mimic_${prefix}right_outer_knuckle_joint">
         <joint>${prefix}finger_joint</joint>
         <mimicJoint>${prefix}right_outer_knuckle_joint</mimicJoint>
         <multiplier>-1.0</multiplier>
         <offset>0.0</offset>
-        <!-- <maxEffort>5.0</maxEffort>
-        <hasPID /> -->
+        <maxEffort>5.0</maxEffort>
+        <!-- <hasPID /> -->
       </plugin>
     </gazebo>
 

@@ -16,7 +16,7 @@
     <!-- <arg name="physics"    value="bullet"/> -->
   </include>
 
-  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen" />
 
   <!-- Send robot urdf to param server -->
   <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find onrobot_rg2_description)/urdf/onrobot_rg2_model.xacro'" />
@@ -24,7 +24,7 @@
         args="-urdf -param robot_description -model onrobot_rg2" output="screen" />
 
   <!-- Start up controllers -->
-  <rosparam file="$(find onrobot_rg2_description)/config/control_params.yaml" command="load"/>
+  <rosparam file="$(find onrobot_rg_control)/config/rg2_control_params.yaml" command="load"/>
   <node name="controller_spawner" pkg="controller_manager" type="spawner"
         respawn="false" output="screen" ns="/onrobot_rg2"
         args="joint_state_controller joint_position_controller" />

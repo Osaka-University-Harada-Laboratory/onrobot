@@ -20,8 +20,8 @@ This repository was inspired by [ros-industrial/robotiq](https://github.com/ros-
 ## Installation
 
 	$ cd catkin_ws/src
-    $ git clone git@github.com:takuya-ki/onrobot.git --depth 1
-    $ git clone https://github.com/roboticsgroup/roboticsgroup_upatras_gazebo_plugins.git
+    $ git clone https://github.com/takuya-ki/onrobot.git --depth 1
+    $ git clone https://github.com/roboticsgroup/roboticsgroup_upatras_gazebo_plugins.git --depth 1
     $ cd ../
 	$ sudo rosdep install --from-paths ./src --ignore-packages-from-source --rosdistro noetic -y --os=ubuntu:focal -y
     $ sudo apt install ros-noetic-ros-control ros-noetic-ros-controllers
@@ -53,9 +53,9 @@ This repository was inspired by [ros-industrial/robotiq](https://github.com/ros-
     $ roslaunch onrobot_rg2_description disp_onrobot_rg2_model.launch
 
 ##### Gazebo simulation
-    $ roslaunch onrobot_rg6_description bringup_rg6_gazebo.launch
+    $ roslaunch onrobot_rg_gazebo bringup_rg6_gazebo.launch
     $ rostopic pub -1 /onrobot_rg6/joint_position_controller/command std_msgs/Float64 "data: 0.5"
-    $ roslaunch onrobot_rg2_description bringup_rg2_gazebo.launch
+    $ roslaunch onrobot_rg_gazebo bringup_rg2_gazebo.launch
     $ rostopic pub -1 /onrobot_rg2/joint_position_controller/command std_msgs/Float64 "data: 0.5"
 
 ### VG10 / VGC10

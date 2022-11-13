@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>onrobot_rg_gazebo</name>
+  <version>1.0.0</version>
+  <description>OnRobot RG grippers gazebo package</description>
+  <license>MIT</license>
+  <author email="taku8926@gmail.com">Takuya Kiyokawa</author>
+  <maintainer email="taku8926@gmail.com">Takuya Kiyokawa</maintainer>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>gazebo_ros</build_depend>
+  <exec_depend>gazebo_ros</exec_depend>
+</package>

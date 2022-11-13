@@ -30,6 +30,12 @@
         <child link="${prefix}onrobot_rg6_base_link"/>
         <origin xyz= "0. 0. 0." rpy="0. 0. 0." />
     </joint>
+    <gazebo reference="${prefix}onrobot_rg6_base_link">
+      <mu1>1.0</mu1>
+      <mu2>1.0</mu2>
+      <selfCollide>false</selfCollide>
+      <material>Gazebo/White</material>
+    </gazebo>
   </xacro:macro>
 
   <xacro:macro name="finger_joints" params="prefix fingerprefix reflect">
