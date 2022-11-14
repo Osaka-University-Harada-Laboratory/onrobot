@@ -3,8 +3,8 @@
 This package contains the URDF files describing OnRobot two-fingered grippers (RG2 and RG6).
 
 ```
-$ roslaunch onrobot_rg_description disp_rg2_model.launch 
-$ roslaunch onrobot_rg_description disp_rg6_model.launch 
+roslaunch onrobot_rg_description disp_rg2_model.launch 
+roslaunch onrobot_rg_description disp_rg6_model.launch 
 ```
 
 ## Visual and Collision models
