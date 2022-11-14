@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Launch file parameters -->
+  <arg name="paused"     default="false"/>
+  <arg name="debug"      default="false"/>
+  <arg name="recording"  default="false"/>
+  <arg name="gui"        default="true"/>
+  <arg name="rate"       default="125" />
+
+  <!-- Start up simulated world -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="paused"     value="$(arg paused)"/>
+    <arg name="debug"      value="$(arg debug)"/>
+    <arg name="recording"  value="$(arg recording)"/>
+    <arg name="gui"        value="$(arg gui)"/>
+    <!-- <arg name="physics"    value="bullet"/> -->
+  </include>
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen" />
+
+  <!-- Send robot urdf to param server -->
+  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find onrobot_rg_description)/urdf/onrobot_rg6_model.xacro'" />
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" 
+        args="-urdf -param robot_description -model onrobot_rg6" output="screen" />
+
+  <!-- Start up controllers -->
+  <rosparam file="$(find onrobot_rg_control)/config/rg6_control_params.yaml" command="load"/>
+  <node name="controller_spawner" pkg="controller_manager" type="spawner"
+        respawn="false" output="screen" ns="/onrobot_rg6"
+        args="joint_state_controller joint_position_controller" />
+</launch>

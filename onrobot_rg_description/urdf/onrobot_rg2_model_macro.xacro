@@ -1,0 +1,162 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="$(find onrobot_rg_description)/urdf/onrobot_rg2_transmission.xacro" />
+  <xacro:include filename="$(find onrobot_rg_description)/urdf/onrobot_rg2_gazebo.xacro" />
+
+  <xacro:macro name="outer_knuckle" params="prefix fingerprefix">
+    <link name="${prefix}${fingerprefix}_outer_knuckle">
+      <inertial>
+        <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+        <mass value="0.05" />
+        <inertia ixx="1.0E-03" ixy="1.0E-06" ixz="1.0E-06" iyy="1.0E-03" iyz="1.0E-06" izz="1.0E-03" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://onrobot_rg_description/meshes/rg2/visual/outer_knuckle.stl" />
+        </geometry>
+        <material name="">
+          <color rgba="0.8 0.8 0.8 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://onrobot_rg_description/meshes/rg2/collision/outer_knuckle.stl" />
+        </geometry>
+      </collision>
+    </link>
+
+    <gazebo reference="${prefix}${fingerprefix}_outer_knuckle">
+      <mu1>0.1</mu1>
+      <mu2>0.1</mu2>
+      <selfCollide>false</selfCollide>
+      <material>Gazebo/White</material>
+    </gazebo>
+  </xacro:macro>
+
+  <xacro:macro name="inner_knuckle" params="prefix fingerprefix">
+    <link name="${prefix}${fingerprefix}_inner_knuckle">
+      <inertial>
+        <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+        <mass value="0.05" />
+        <inertia ixx="1.0E-03" ixy="1.0E-06" ixz="1.0E-06" iyy="1.0E-03" iyz="1.0E-06" izz="1.0E-03" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://onrobot_rg_description/meshes/rg2/visual/inner_knuckle.stl" />
+        </geometry>
+        <material name="">
+          <color rgba="0.8 0.8 0.8 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://onrobot_rg_description/meshes/rg2/collision/inner_knuckle.stl" />
+        </geometry>
+      </collision>
+    </link>
+
+    <gazebo reference="${prefix}${fingerprefix}_inner_knuckle">
+      <mu1>0.1</mu1>
+      <mu2>0.1</mu2>
+      <selfCollide>false</selfCollide>
+      <material>Gazebo/White</material>
+    </gazebo>
+  </xacro:macro>
+
+  <xacro:macro name="inner_finger" params="prefix fingerprefix">
+    <link name="${prefix}${fingerprefix}_inner_finger">
+      <inertial>
+        <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+        <mass value="0.05" />
+        <inertia ixx="1.0E-03" ixy="1.0E-06" ixz="1.0E-06" iyy="1.0E-03" iyz="1.0E-06" izz="1.0E-03" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://onrobot_rg_description/meshes/rg2/visual/inner_finger.stl" />
+        </geometry>
+        <material name="">
+          <color rgba="0.1 0.1 0.1 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://onrobot_rg_description/meshes/rg2/collision/inner_finger.stl" />
+        </geometry>
+      </collision>
+    </link>
+
+    <gazebo reference="${prefix}${fingerprefix}_inner_finger">
+      <kp>1000000.0</kp>
+      <kd>1.0</kd>
+      <kd>1.0</kd>
+      <mu1>1.0</mu1>
+      <mu2>1.0</mu2>
+      <minDepth>0.00001</minDepth>
+      <selfCollide>false</selfCollide>
+      <material>Gazebo/Black</material>
+    </gazebo>
+  </xacro:macro>
+
+  <xacro:macro name="inner_knuckle_joint" params="prefix fingerprefix reflect">
+    <joint name="${prefix}${fingerprefix}_inner_knuckle_joint" type="revolute">
+      <origin xyz="0 ${reflect * -0.007678} 0.1422970" rpy="0 0 ${(reflect - 1) * pi / 2}" />
+      <parent link="${prefix}onrobot_rg2_base_link" />
+      <child link="${prefix}${fingerprefix}_inner_knuckle" />
+      <axis xyz="1 0 0" />
+      <limit lower="-0.785398" upper="0.785398" velocity="100.0" effort="1000" />
+      <mimic joint="${prefix}finger_joint" multiplier="-1" offset="0" />
+    </joint>
+  </xacro:macro>
+
+  <xacro:macro name="inner_finger_joint" params="prefix fingerprefix">
+    <joint name="${prefix}${fingerprefix}_inner_finger_joint" type="revolute">
+      <origin xyz="0 ${-(0.056770-0.017178)} ${0.163974-0.125797}" rpy="0 0 0" />
+      <parent link="${prefix}${fingerprefix}_outer_knuckle" />
+      <child link="${prefix}${fingerprefix}_inner_finger" />
+      <axis xyz="1 0 0" />
+      <limit lower="-0.872665" upper="0.872665" velocity="100.0" effort="1000" />
+      <mimic joint="${prefix}finger_joint" multiplier="1" offset="0" />
+    </joint>
+  </xacro:macro>
+
+  <xacro:include filename="$(find onrobot_rg_description)/urdf/onrobot_rg2.xacro" />
+
+  <xacro:macro name="finger_joint" params="prefix">
+    <joint name="${prefix}finger_joint" type="revolute">
+      <origin xyz="0 -0.017178 0.125797" rpy="0 0 0" />
+      <parent link="${prefix}onrobot_rg2_base_link" />
+      <child link="${prefix}left_outer_knuckle" />
+      <axis xyz="-1 0 0" />
+      <limit lower="-0.558505" upper="0.785398" velocity="100.0" effort="1000" />
+    </joint>
+    <xacro:finger_joints prefix="${prefix}" fingerprefix="left" reflect="1.0"/>
+  </xacro:macro>
+
+  <xacro:macro name="right_outer_knuckle_joint" params="prefix">
+    <joint name="${prefix}right_outer_knuckle_joint" type="revolute">
+      <origin xyz="0 0.017178 0.125797" rpy="0 0 ${pi}" />
+      <parent link="${prefix}onrobot_rg2_base_link" />
+      <child link="${prefix}right_outer_knuckle" />
+      <axis xyz="1 0 0" />
+      <limit lower="-0.785398" upper="0.785398" velocity="100.0" effort="1000" />
+      <mimic joint="${prefix}finger_joint" multiplier="-1" offset="0" />
+    </joint>
+    <xacro:finger_joints prefix="${prefix}" fingerprefix="right" reflect="-1.0"/>
+  </xacro:macro>
+
+  <xacro:macro name="onrobot_rg2" params="prefix">
+    <xacro:onrobot_rg2_base_link prefix="${prefix}"/>
+    <xacro:finger_links prefix="${prefix}" fingerprefix="left"/>
+    <xacro:finger_links prefix="${prefix}" fingerprefix="right"/>
+    <xacro:finger_joint prefix="${prefix}"/>
+    <xacro:right_outer_knuckle_joint prefix="${prefix}"/>
+    <xacro:onrobot_rg2_transmission prefix="${prefix}"/>
+    <xacro:onrobot_rg2_gazebo prefix="${prefix}"/>
+  </xacro:macro>
+</robot>

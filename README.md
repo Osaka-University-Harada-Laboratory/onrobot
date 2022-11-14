@@ -49,8 +49,8 @@ This repository was inspired by [ros-industrial/robotiq](https://github.com/ros-
 
 #### Simulation
 ##### Display models
-    $ roslaunch onrobot_rg6_description disp_onrobot_rg6_model.launch
-    $ roslaunch onrobot_rg2_description disp_onrobot_rg2_model.launch
+    $ roslaunch onrobot_rg_description disp_rg6_model.launch
+    $ roslaunch onrobot_rg_description disp_rg2_model.launch
 
 ##### Gazebo simulation
     $ roslaunch onrobot_rg_gazebo bringup_rg6_gazebo.launch
@@ -74,9 +74,9 @@ This repository was inspired by [ros-industrial/robotiq](https://github.com/ros-
 
 #### Simulation
 ##### Display models
-    $ roslaunch onrobot_vgc10_description disp_onrobot_vgc10_1cup_model.launch
-    $ roslaunch onrobot_vgc10_description disp_onrobot_vgc10_4cups_model.launch
-    $ roslaunch onrobot_vg10_description disp_onrobot_vg10_model.launch
+    $ roslaunch onrobot_vg_description disp_vgc10_1cup_model.launch
+    $ roslaunch onrobot_vg_description disp_vgc10_4cups_model.launch
+    $ roslaunch onrobot_vg_description disp_vg10_model.launch
 
 ## Author / Contributor
 

@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<robot name="onrobot_rg2_model" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="$(find onrobot_rg_description)/urdf/onrobot_rg2_model_macro.xacro" />
+  <xacro:onrobot_rg2 prefix=""/>
+</robot>

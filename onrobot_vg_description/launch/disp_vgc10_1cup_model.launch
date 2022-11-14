@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<launch>
+  <arg name="gui" default="True" />
+  <param name="robot_description" command="$(find xacro)/xacro $(find onrobot_vg_description)/urdf/onrobot_vgc10_1cup_model.xacro" />
+  <param name="use_gui" value="$(arg gui)"/>
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen" />
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find onrobot_vg_description)/config/vgc10_visualize.rviz" required="true" />
+</launch>
