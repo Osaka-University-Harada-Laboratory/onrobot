@@ -1,0 +1,22 @@
+<launch>
+   <arg name="ip"                default="192.168.1.1"/>
+   <arg name="port"              default="502"/>
+   <arg name="gripper_primary"   default="rg2"/>
+   <arg name="gripper_secondary" default="rg6"/>
+   <arg name="dummy"             default="false"/>
+
+   <param name="/onrobot/ip"                value="$(arg ip)" />
+   <param name="/onrobot/port"              value="$(arg port)" />
+   <param name="/onrobot/gripper_primary"   value="$(arg gripper_primary)" />
+   <param name="/onrobot/gripper_secondary" value="$(arg gripper_secondary)" />
+ 
+  <!-- <node name="OnRobotRGStatusDualListen"
+        pkg="onrobot_rg_control"
+        type="OnRobotRGStatusDualListen.py"
+        output="screen"/> -->
+
+  <node name="OnRobotRGTcpDualNode"
+        pkg="onrobot_rg_control"
+        type="OnRobotRGTcpDualNode.py"
+        output="screen"/>    
+</launch>
