@@ -3,40 +3,49 @@
 import rospy
 from onrobot_rg_control.msg import OnRobotRGInput
 
-def Status_A_callback(status):
-    statusA.gFOF = status.gFOF
-    statusA.gGWD = status.gGWD
-    statusA.gSTA = status.gSTA
-    statusA.gWDF = status.gWDF
+class DualGripperListen:
+    def __init__(self):
+        self.statusA = OnRobotRGInput
+        self.statusB = OnRobotRGInput
 
-def Status_B_callback(status):
-    statusB.gFOF = status.gFOF
-    statusB.gGWD = status.gGWD
-    statusB.gSTA = status.gSTA
-    statusB.gWDF = status.gWDF
-
-def status_interpreter():
-    output = '\n-----\nOnRobot Dual Changer RG status interpreter\n-----\n'
-    output += 'Gripper STATUS \n PRIMARY | SECONDARY\n'
-    output += 'status_A = ' + str(statusA.gSTA) + '   status_B = ' + str(statusA.gSTA) + '\n'
+        #Subscribers
+        rospy.Subscriber("OnRobotRG_Input_A", OnRobotRGInput, self.Status_A_callback)
+        rospy.Subscriber("OnRobotRG_Input_B", OnRobotRGInput, self.Status_B_callback)
+        
     
-    output += 'Current width between the gripper fingers (w/o offset): ' + \
-              str(statusA.gGWD / 10.0) + ' mm\n' + '  ' + str(statusB.gGWD / 10.0) + ' mm\n'
+    def Status_A_callback(self, status):
+        self.statusA = status
 
-def OnRobotRGStatusListener():
-    """Initializes the node and subscribe to both grippers OnRobotRGInput topics."""
+    def Status_B_callback(self, status):
+        self.statusB = status
 
-    rospy.init_node(
-        'OnRobotRGStatusDualListen', anonymous=True, log_level=rospy.DEBUG)
-    rospy.Subscriber("OnRobotRGInput_A", OnRobotRGInput, Status_A_callback)
-    rospy.Subscriber("OnRobotRGInput_B", OnRobotRGInput, Status_B_callback)
+    def status_interpreter(self):
 
-    rospy.loginfo(status_interpreter())
+         while not rospy.is_shutdown():
+            output = '\n-----\nOnRobot Dual Changer RG status interpreter\n-----\n'
+            output += 'Gripper DUAL CHANGER STATUS \n '
+            output += '\n ------PRIMARY------ \n'
+            output += 'Status_A = ' + str(self.statusA.gSTA) + '\n'
+            output += ' Width_A = ' + \
+                        str(self.statusA.gWDF) + ' mm\n'
+            output += 'Offset_A = ' + \
+                        str(self.statusA.gFOF) + ' mm\n'
 
-    rospy.spin()
+            output += '\n------SECONDARY------ \n'
+            output += 'Status_B = ' + str(self.statusB.gSTA) +'\n'
+            output += ' Width_B = ' + \
+                        str(self.statusB.gWDF) + ' mm\n'
+            output += 'Offset_B = ' + \
+                        str(self.statusA.gFOF) + ' mm\n'
+
+            rospy.loginfo(output)
 
 if __name__ == '__main__':
-    statusA = OnRobotRGInput  
-    statusB = OnRobotRGInput
+    try:
+        rospy.init_node('OnRobotRGStatusDualListen')
 
-    OnRobotRGStatusListener()
+        rate = rospy.Rate(20) # 20Hz
+        Listener = DualGripperListen()
+        Listener.status_interpreter()
+    except rospy.ROSInterruptException:
+        pass

@@ -10,11 +10,10 @@
    <param name="/onrobot/gripper_primary"   value="$(arg gripper_primary)" />
    <param name="/onrobot/gripper_secondary" value="$(arg gripper_secondary)" />
  
-  <!-- <node name="OnRobotRGStatusDualListen"
+  <node name="OnRobotRGStatusDualListen"
         pkg="onrobot_rg_control"
         type="OnRobotRGStatusDualListen.py"
-        output="screen"/> -->
-
+        output="screen"/>
   <node name="OnRobotRGTcpDualNode"
         pkg="onrobot_rg_control"
         type="OnRobotRGTcpDualNode.py"
