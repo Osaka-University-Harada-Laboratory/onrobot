@@ -22,11 +22,11 @@ class OnRobotRGDualNode:
             SetCommand,
             self.handle_command_B)
 
-    def handle_command_A(self, req, gripper=0):
+    def handle_command_A(self, req):
         """To handle sending commands via socket connection."""
         rospy.loginfo(str(req.command))
     
-        self.command = self.genCommand(str(req.command), self.command, gtype=gtype_A)
+        self.command = self.genCommand(str(req.command), self.commandA, gtype=gtype_A)
         self.pub_primary_gripper.publish(self.command)
         rospy.sleep(1)
         return SetCommandResponse(
@@ -36,7 +36,7 @@ class OnRobotRGDualNode:
     def handle_command_B(self, req):
         """To handle sending commands via socket connection."""
         rospy.loginfo(str(req.command))
-        self.command = self.genCommand(str(req.command), self.command, gtype=gtype_B)
+        self.command = self.genCommand(str(req.command), self.commandB, gtype=gtype_B)
         self.pub_secondary_gripper.publish(self.command)
         rospy.sleep(1)
         return SetCommandResponse(
