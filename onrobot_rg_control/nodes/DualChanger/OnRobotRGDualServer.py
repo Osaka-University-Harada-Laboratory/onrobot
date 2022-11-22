@@ -5,6 +5,7 @@ from onrobot_rg_control.msg import OnRobotRGOutput
 from onrobot_rg_control.srv import SetCommand, SetCommandResponse
 
 class OnRobotRGDualNode:
+    """Class to handle setting commands for dual gripper."""
     def __init__(self):
         self.pub_primary_gripper = rospy.Publisher('OnRobotRG_Output_A', OnRobotRGOutput, queue_size=1)
         self.pub_secondary_gripper = rospy.Publisher('OnRobotRG_Output_B', OnRobotRGOutput, queue_size=1)
@@ -23,7 +24,7 @@ class OnRobotRGDualNode:
             self.handle_command_B)
 
     def handle_command_A(self, req):
-        """To handle sending commands via socket connection."""
+        """To handle sending Primary Gripper commands via socket connection."""
         rospy.loginfo(str(req.command))
     
         self.command = self.genCommand(str(req.command), self.commandA, gtype=gtype_A)
@@ -34,7 +35,7 @@ class OnRobotRGDualNode:
             message=None)  # TODO: implement
 
     def handle_command_B(self, req):
-        """To handle sending commands via socket connection."""
+        """To handle sending Secondary Gripper commands via socket connection."""
         rospy.loginfo(str(req.command))
         self.command = self.genCommand(str(req.command), self.commandB, gtype=gtype_B)
         self.pub_secondary_gripper.publish(self.command)
@@ -89,6 +90,6 @@ if __name__ == '__main__':
     gtype_A = rospy.get_param('/onrobot/gripper_primary', 'rg2')
     gtype_B = rospy.get_param('/onrobot/gripper_secondary', 'rg6')
     rospy.init_node(
-        'OnRobotRGSimpleControllerServer', anonymous=True, log_level=rospy.DEBUG)
+        'OnRobotRGDualServer', anonymous=True, log_level=rospy.DEBUG)
     node = OnRobotRGDualNode()
     rospy.spin()

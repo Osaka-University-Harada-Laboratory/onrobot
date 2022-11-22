@@ -17,5 +17,6 @@
   <node name="OnRobotRGTcpDualNode"
         pkg="onrobot_rg_control"
         type="OnRobotRGTcpDualNode.py"
+        respawn="True"
         output="screen"/>    
 </launch>
