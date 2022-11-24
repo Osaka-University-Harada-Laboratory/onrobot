@@ -36,5 +36,6 @@ catkin_install_python(
     nodes/OnRobotRGSimpleController.py
     nodes/OnRobotRGStatusListener.py
     nodes/OnRobotRGTcpNode.py
+    nodes/OnRobotRGReset.py
     nodes/OnRobotRGSimpleControllerServer.py
     DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
