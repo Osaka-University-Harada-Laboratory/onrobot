@@ -94,9 +94,13 @@ roslaunch onrobot_vg_description disp_vgc10_4cups_model.launch
 roslaunch onrobot_vg_description disp_vg10_model.launch
 ```
 
-## Author / Contributor
+## Author
 
 [Takuya Kiyokawa](https://takuya-ki.github.io/)
+
+## Contributors
+
+[Roberto Mendivil C](https://github.com/Robertomendivil97)  
 
 ## License
 
