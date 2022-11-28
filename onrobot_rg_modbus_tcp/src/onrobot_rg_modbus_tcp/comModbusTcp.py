@@ -68,6 +68,19 @@ class communication:
                 self.client.write_registers(
                     address=0, values=message, unit=self.changer_addr)
 
+    def restartPowerCycle(self):
+        """Restarts the power cycle of Compute Box
+           Necessary is Safety Switch of the grippers are pressed
+           Writing 2 to this field powers the tool off for a short amount of time and then powers them back
+        """
+        message = 2
+        restart_address = 63
+
+        # Sending 2 to address 0x0 resets compute box (address 63) power cycle
+        with self.lock:
+                self.client.write_registers(
+                    address=0, values=message, unit=restart_address)
+
     def getStatus(self):
         """Sends a request to read, wait for the response
            and returns the Gripper status.

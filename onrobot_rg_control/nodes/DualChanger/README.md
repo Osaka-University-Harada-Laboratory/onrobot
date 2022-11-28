@@ -22,17 +22,11 @@
 ```
 roslaunch onrobot_rg_control bringup_dual.launch ip:=XXX.XXX.XXX.XXX gripper_primary:=rg2 gripper_secondary:=rg6
 rosrun onrobot_rg_control OnRobotRGDualServer.py
-```
-
-##### Control primary gripper
-```
 rosservice call /onrobot_rg/set_command_A 'c'
 rosservice call /onrobot_rg/set_command_A 'o'
 rosservice call /onrobot_rg/set_command_A '!!str 300'
-```
-##### Control secondary gripper
-```
 rosservice call /onrobot_rg/set_command_B 'c'
 rosservice call /onrobot_rg/set_command_B 'o'
 rosservice call /onrobot_rg/set_command_B '!!str 300'
+rosservice call /onrobot_rg/restart_power
 ```

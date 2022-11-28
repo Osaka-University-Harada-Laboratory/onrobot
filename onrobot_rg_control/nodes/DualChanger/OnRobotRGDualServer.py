@@ -7,8 +7,8 @@ from onrobot_rg_control.srv import SetCommand, SetCommandResponse
 class OnRobotRGDualNode:
     """Class to handle setting commands for dual gripper."""
     def __init__(self):
-        self.pub_primary_gripper = rospy.Publisher('OnRobotRG_Output_A', OnRobotRGOutput, queue_size=1)
-        self.pub_secondary_gripper = rospy.Publisher('OnRobotRG_Output_B', OnRobotRGOutput, queue_size=1)
+        self.pub_primary_gripper = rospy.Publisher('OnRobotRGOutput_A', OnRobotRGOutput, queue_size=1)
+        self.pub_secondary_gripper = rospy.Publisher('OnRobotRGOutput_B', OnRobotRGOutput, queue_size=1)
 
         self.commandA = OnRobotRGOutput()
         self.commandB = OnRobotRGOutput()
@@ -44,7 +44,6 @@ class OnRobotRGDualNode:
             success=None,  # TODO: implement
             message=None)  # TODO: implement
     
-
     def genCommand(self, char, command, gtype):
         """Updates the command according to the character entered by the user."""
 

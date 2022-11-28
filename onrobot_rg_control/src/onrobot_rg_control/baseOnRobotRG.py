@@ -68,6 +68,11 @@ class onrobotbaseRG:
 
         self.client.sendCommand(self.message)
 
+    def restartPowerCycle(self):
+        """Restarts the power cycle of the Gripper."""
+
+        self.client.restartPowerCycle()
+
     def getStatus(self):
         """Requests the status from the gripper and
            return it in the OnRobotRGInput msg type.

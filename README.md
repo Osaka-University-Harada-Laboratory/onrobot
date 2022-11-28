@@ -51,6 +51,7 @@ rosrun onrobot_rg_control OnRobotRGSimpleControllerServer.py
 rosservice call /onrobot_rg/set_command c
 rosservice call /onrobot_rg/set_command o
 rosservice call /onrobot_rg/set_command '!!str 300'
+rosservice call /onrobot_rg/restart_power
 ```
 
 #### Simulation
