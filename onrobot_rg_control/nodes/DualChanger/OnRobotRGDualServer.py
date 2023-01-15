@@ -1,14 +1,38 @@
 #!/usr/bin/env python3
 
-import rospy 
+import rospy
 from onrobot_rg_control.msg import OnRobotRGOutput
 from onrobot_rg_control.srv import SetCommand, SetCommandResponse
 
+
 class OnRobotRGDualNode:
-    """Class to handle setting commands for dual gripper."""
+    """ OnRobotRGDualNode handles setting commands.
+
+        Attributes:
+            pub_primary_gripper (rospy.Publisher):
+                the publisher for OnRobotRGOutput for primary gripper A
+            pub_secondary_gripper (rospy.Publisher):
+                the publisher for OnRobotRGOutput for secondary gripper B
+            commandA (OnRobotRGOutput): command for the gripper A to be sent
+            commandB (OnRobotRGOutput): command for the gripper B to be sent
+            set_command_srv_A (rospy.Service):
+                set_command service instance for the gripper A
+            set_command_srv_B (rospy.Service):
+                set_command service instance for the gripper B
+
+            handleCommandA:
+                Handles sending commands for the gripper A.
+            handleCommandB:
+                Handles sending commands for the gripper B.
+            genCommand:
+                Updates the command according to the input character.
+    """
+
     def __init__(self):
-        self.pub_primary_gripper = rospy.Publisher('OnRobotRGOutput_A', OnRobotRGOutput, queue_size=1)
-        self.pub_secondary_gripper = rospy.Publisher('OnRobotRGOutput_B', OnRobotRGOutput, queue_size=1)
+        self.pub_primary_gripper = rospy.Publisher(
+            'OnRobotRGOutput_A', OnRobotRGOutput, queue_size=1)
+        self.pub_secondary_gripper = rospy.Publisher(
+            'OnRobotRGOutput_B', OnRobotRGOutput, queue_size=1)
 
         self.commandA = OnRobotRGOutput()
         self.commandB = OnRobotRGOutput()
@@ -16,36 +40,48 @@ class OnRobotRGDualNode:
         self.set_command_srv_A = rospy.Service(
             "/onrobot_rg/set_command_A",
             SetCommand,
-            self.handle_command_A)
-        
+            self.handleCommandA)
+
         self.set_command_srv_B = rospy.Service(
             "/onrobot_rg/set_command_B",
             SetCommand,
-            self.handle_command_B)
+            self.handleCommandB)
 
-    def handle_command_A(self, req):
-        """To handle sending Primary Gripper commands via socket connection."""
+    def handleCommandA(self, req):
+        """ Handles sending commands for the gripper A. """
+
         rospy.loginfo(str(req.command))
-    
-        self.command = self.genCommand(str(req.command), self.commandA, gtype=gtype_A)
+        self.command = self.genCommand(
+            str(req.command), self.commandA, gtype=gtype_A)
         self.pub_primary_gripper.publish(self.command)
         rospy.sleep(1)
         return SetCommandResponse(
             success=None,  # TODO: implement
             message=None)  # TODO: implement
 
-    def handle_command_B(self, req):
-        """To handle sending Secondary Gripper commands via socket connection."""
+    def handleCommandB(self, req):
+        """ Handles sending commands for the gripper B. """
+
         rospy.loginfo(str(req.command))
-        self.command = self.genCommand(str(req.command), self.commandB, gtype=gtype_B)
+        self.command = self.genCommand(
+            str(req.command), self.commandB, gtype=gtype_B)
         self.pub_secondary_gripper.publish(self.command)
         rospy.sleep(1)
         return SetCommandResponse(
             success=None,  # TODO: implement
             message=None)  # TODO: implement
-    
+
     def genCommand(self, char, command, gtype):
-        """Updates the command according to the character entered by the user."""
+        """ Updates the command according to the input character.
+
+            Args:
+                char (str): set command service request message
+                command (OnRobotRGOutput): command to be sent
+                gtype (str): gripper type 'RG2' or 'RG6'
+
+            Returns:
+                command: command message with parameters set
+        """
 
         if gtype == 'rg2':
             max_force = 400
@@ -85,10 +121,15 @@ class OnRobotRGDualNode:
 
         return command
 
+
 if __name__ == '__main__':
-    gtype_A = rospy.get_param('/onrobot/gripper_primary', 'rg2')
-    gtype_B = rospy.get_param('/onrobot/gripper_secondary', 'rg6')
+    gtype_A = rospy.get_param(
+        '/onrobot/gripper_primary', 'rg2')
+    gtype_B = rospy.get_param(
+        '/onrobot/gripper_secondary', 'rg6')
     rospy.init_node(
-        'OnRobotRGDualServer', anonymous=True, log_level=rospy.DEBUG)
+        'OnRobotRGDualServer',
+        anonymous=True,
+        log_level=rospy.DEBUG)
     node = OnRobotRGDualNode()
     rospy.spin()
