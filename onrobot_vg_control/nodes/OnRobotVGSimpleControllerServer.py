@@ -6,17 +6,31 @@ from onrobot_vg_control.srv import SetCommand, SetCommandResponse
 
 
 class OnRobotVGNode:
-    """Class to handle setting commands."""
+    """ OnRobotVGNode handles setting commands.
+
+        Attributes:
+            pub (rospy.Publisher): the publisher for OnRobotVGOutput
+            command (OnRobotVGOutput): command to be sent
+            set_command_srv (rospy.Service): set_command service instance
+
+            handleSettingCommand:
+                Handles sending commands via socket connection.
+            genCommand:
+                Updates the command according to the input character.
+    """
+
     def __init__(self):
-        self.pub = rospy.Publisher('OnRobotVGOutput', OnRobotVGOutput, queue_size=1)
+        self.pub = rospy.Publisher(
+            'OnRobotVGOutput', OnRobotVGOutput, queue_size=1)
         self.command = OnRobotVGOutput()
         self.set_command_srv = rospy.Service(
             "/onrobot_vg/set_command",
             SetCommand,
-            self.handle_set_command)
+            self.handleSettingCommand)
 
-    def handle_set_command(self, req):
-        """To handle sending commands via socket connection."""
+    def handleSettingCommand(self, req):
+        """ Handles sending commands via socket connection. """
+
         rospy.loginfo(str(req.command))
         self.command = self.genCommand(str(req.command), self.command)
         self.pub.publish(self.command)
@@ -26,7 +40,16 @@ class OnRobotVGNode:
             message=None)  # TODO: implement
 
     def genCommand(self, char, command):
-        """Updates the command according to the character entered by the user."""
+        """ Updates the command according to the input character.
+
+            Args:
+                char (str): set command service request message
+                command (OnRobotVGOutput): command to be sent
+
+            Returns:
+                command: command message with parameters set
+        """
+
         if char == 'g':
             command.rMCA = 0x0100
             command.rVCA = 255
@@ -70,6 +93,8 @@ class OnRobotVGNode:
 
 if __name__ == '__main__':
     rospy.init_node(
-        'OnRobotVGSimpleControllerServer', anonymous=True, log_level=rospy.DEBUG)
+        'OnRobotVGSimpleControllerServer',
+        anonymous=True,
+        log_level=rospy.DEBUG)
     node = OnRobotVGNode()
     rospy.spin()
