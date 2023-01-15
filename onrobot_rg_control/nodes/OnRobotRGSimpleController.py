@@ -5,7 +5,15 @@ from onrobot_rg_control.msg import OnRobotRGOutput
 
 
 def genCommand(char, command):
-    """Updates the command according to the character entered by the user."""
+    """ Updates the command according to the input character.
+
+        Args:
+            char (str): set command service request message
+            command (OnRobotRGOutput): command to be sent
+
+        Returns:
+            command: command message with parameters set
+    """
 
     if gtype == 'rg2':
         max_force = 400
@@ -47,7 +55,14 @@ def genCommand(char, command):
 
 
 def askForCommand(command):
-    """Asks the user for a command to send to the gripper."""
+    """ Asks the user for a command to send to the gripper.
+
+        Args:
+            command (OnRobotRGOutput): command to be sent
+
+        Returns:
+            input(strAskForCommand) (str): input command strings
+    """
 
     currentCommand = 'Simple OnRobot RG Controller\n-----\nCurrent command:'
     currentCommand += ' rGFR = ' + str(command.rGFR)
@@ -69,8 +84,8 @@ def askForCommand(command):
 
 
 def publisher():
-    """Main loop which requests new commands and
-       publish them on the OnRobotRGOutput topic.
+    """ Main loop which requests new commands and
+        publish them on the OnRobotRGOutput topic.
     """
 
     rospy.init_node(
