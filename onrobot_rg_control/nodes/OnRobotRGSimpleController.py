@@ -89,8 +89,11 @@ def publisher():
     """
 
     rospy.init_node(
-        'OnRobotRGSimpleController', anonymous=True, log_level=rospy.DEBUG)
-    pub = rospy.Publisher('OnRobotRGOutput', OnRobotRGOutput, queue_size=1)
+        'OnRobotRGSimpleController',
+        anonymous=True,
+        log_level=rospy.DEBUG)
+    pub = rospy.Publisher(
+        'OnRobotRGOutput', OnRobotRGOutput, queue_size=1)
     command = OnRobotRGOutput()
 
     while not rospy.is_shutdown():
