@@ -11,6 +11,21 @@ from pymodbus.client.sync import ModbusTcpClient
 
 
 class communication:
+    """ communication sends commands and receives the status of VG gripper.
+
+        Attributes:
+            client (pymodbus.client.sync.ModbusTcpClient):
+                instance of ModbusTcpClient to establish modbus connection
+            dummy (book): the process will be dummy mode (True) or not
+            lock (threading.Lock):
+                instance of the threading.Lock to achieve exclusive control
+
+            connectToDevice: Connects to the client device (gripper).
+            disconnectFromDevice: Closes connection.
+            sendCommand: Sends a command to the Gripper.
+            restartPowerCycle: Restarts the power cycle of Compute Box.
+            getStatus: Sends a request to read and returns the gripper status.
+    """
 
     def __init__(self, dummy=False):
         self.client = None
@@ -18,10 +33,14 @@ class communication:
         self.lock = threading.Lock()
 
     def connectToDevice(self, ip, port, changer_addr=65):
-        """Connects to the client.
-           The method takes the IP address and port number
-           (as a string, e.g. '192.168.1.1' and '502') as arguments.
+        """ Connects to the client device (gripper).
+
+            Args:
+                ip (str): IP address (e.g. '192.168.1.1')
+                port (str): port number (e.g. '502')
+                changer_addr (int): quick tool changer address
         """
+
         if self.dummy:
             rospy.loginfo(
                 rospy.get_name() +
@@ -41,7 +60,8 @@ class communication:
         self.client.connect()
 
     def disconnectFromDevice(self):
-        """Closes connection."""
+        """ Closes connection. """
+
         if self.dummy:
             rospy.loginfo(
                 rospy.get_name() +
@@ -52,9 +72,12 @@ class communication:
         self.client.close()
 
     def sendCommand(self, message):
-        """Sends a command to the Gripper.
-           The method takes a list of uint8 as an argument.
+        """ Sends a command to the Gripper.
+
+            Args:
+                message (list[int]): message to be sent
         """
+
         if self.dummy:
             rospy.loginfo(
                 rospy.get_name() +
@@ -62,7 +85,7 @@ class communication:
                 sys._getframe().f_code.co_name)
             return
 
-        # Send a command to the device (address 0 ~ 1)
+        # Sending a command to the device (address 0 ~ 1)
         if message != []:
             command = [message[0]+message[1],
                        message[2]+message[3]]
@@ -71,10 +94,8 @@ class communication:
                     address=0, values=command, unit=self.changer_addr)
 
     def getStatus(self):
-        """Sends a request to read, wait for the response
-           and returns the Gripper status.
-           The method gets by specifying register address as an argument.
-        """
+        """ Sends a request to read and returns the gripper status. """
+
         response = [0] * 2
         if self.dummy:
             rospy.loginfo(
@@ -83,7 +104,7 @@ class communication:
                 sys._getframe().f_code.co_name)
             return response
 
-        # Get status from the device (address 258 ~ 259)
+        # Getting status from the device (address 258 ~ 259)
         with self.lock:
             response = self.client.read_holding_registers(
                 address=258, count=2, unit=self.changer_addr).registers
