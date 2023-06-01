@@ -61,6 +61,8 @@ roslaunch onrobot_rg_description disp_rg6_model.launch
 roslaunch onrobot_rg_description disp_rg2_model.launch
 ```
 
+<img src=image/rg6_rviz.gif width=320>  <img src=image/rg2_rviz.gif width=320>  
+
 ##### Gazebo simulation
 ```
 roslaunch onrobot_rg_gazebo bringup_rg6_gazebo.launch
@@ -68,6 +70,8 @@ rostopic pub -1 /onrobot_rg6/joint_position_controller/command std_msgs/Float64 
 roslaunch onrobot_rg_gazebo bringup_rg2_gazebo.launch
 rostopic pub -1 /onrobot_rg2/joint_position_controller/command std_msgs/Float64 "data: 0.5"
 ```
+
+<img src=image/rg6_gazebo.gif width=320>  <img src=image/rg2_gazebo.gif width=320>  
 
 ### VG10 / VGC10
 
