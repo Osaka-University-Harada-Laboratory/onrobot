@@ -9,9 +9,10 @@ This repository was inspired by [ros-industrial/robotiq](https://github.com/ros-
 
 ## Features
 
-- ROS Noetic (Python3)
-- Controller for OnRobot RG2 / RG6 via Modbus/TCP
-- Controller for OnRobot VG10 / VGC10 via Modbus/TCP
+- [Ubuntu 20.04 PC](https://ubuntu.com/certified/laptops?q=&limit=20&vendor=Dell&vendor=Lenovo&vendor=HP&release=20.04+LTS)
+  - [ROS Noetic (Python3)](https://wiki.ros.org/noetic/Installation/Ubuntu)
+- Controller for OnRobot [RG2](https://onrobot.com/en/products/rg2-gripper) / [RG6](https://onrobot.com/en/products/rg6-gripper) via Modbus/TCP
+- Controller for OnRobot [VG10](https://onrobot.com/en/products/vg10-electric-vacuum-gripper) / [VGC10](https://onrobot.com/en/products/vgc10) via Modbus/TCP
 
 ## Dependency
 
@@ -20,7 +21,7 @@ This repository was inspired by [ros-industrial/robotiq](https://github.com/ros-
 
 ## Installation
 
-```
+```bash
 cd catkin_ws/src
 git clone https://github.com/takuya-ki/onrobot.git --depth 1
 git clone https://github.com/roboticsgroup/roboticsgroup_upatras_gazebo_plugins.git --depth 1
@@ -40,13 +41,13 @@ catkin build -DPYTHON_EXECUTABLE=/usr/bin/python3
 
 #### Send motion commands
 ##### Interactive mode
-```
+```bash
 roslaunch onrobot_rg_control bringup.launch gripper:=[rg2/rg6] ip:=XXX.XXX.XXX.XXX
 rosrun onrobot_rg_control OnRobotRGSimpleController.py
 ```
 
 ##### ROS service call
-```
+```bash
 roslaunch onrobot_rg_control bringup.launch gripper:=[rg2/rg6] ip:=XXX.XXX.XXX.XXX
 rosrun onrobot_rg_control OnRobotRGSimpleControllerServer.py
 rosservice call /onrobot_rg/set_command c
@@ -57,7 +58,7 @@ rosservice call /onrobot_rg/restart_power
 
 #### Simulation
 ##### Display models
-```
+```bash
 roslaunch onrobot_rg_description disp_rg6_model.launch
 roslaunch onrobot_rg_description disp_rg2_model.launch
 ```
@@ -65,7 +66,7 @@ roslaunch onrobot_rg_description disp_rg2_model.launch
 <img src=image/rg6_rviz.gif width=320>  <img src=image/rg2_rviz.gif width=320>  
 
 ##### Gazebo simulation
-```
+```bash
 roslaunch onrobot_rg_gazebo bringup_rg6_gazebo.launch
 rostopic pub -1 /onrobot_rg6/joint_position_controller/command std_msgs/Float64 "data: 0.5"
 roslaunch onrobot_rg_gazebo bringup_rg2_gazebo.launch
@@ -78,13 +79,13 @@ rostopic pub -1 /onrobot_rg2/joint_position_controller/command std_msgs/Float64 
 
 #### Send motion commands
 ##### Interactive mode
-```
+```bash
 roslaunch onrobot_vg_control bringup.launch ip:=YYY.YYY.YYY.YYY
 rosrun onrobot_vg_control OnRobotVGSimpleController.py  
 ```
 
 ##### ROS service call
-```
+```bash
 roslaunch onrobot_vg_control bringup.launch ip:=YYY.YYY.YYY.YYY
 rosrun onrobot_vg_control OnRobotVGSimpleControllerServer.py  
 rosservice call /onrobot_vg/set_command g
@@ -94,7 +95,7 @@ rosservice call /onrobot_vg/set_command '!!str 128'
 
 #### Simulation
 ##### Display models
-```
+```bash
 roslaunch onrobot_vg_description disp_vgc10_1cup_model.launch
 roslaunch onrobot_vg_description disp_vgc10_4cups_model.launch
 roslaunch onrobot_vg_description disp_vg10_model.launch
