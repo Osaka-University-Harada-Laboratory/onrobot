@@ -54,6 +54,7 @@ class OnRobotVGTcp:
             if not prev_msg == self.gripper.message:  # find new message
                 rospy.loginfo(rospy.get_name()+": Sending message.")
                 self.gripper.sendCommand()
+            prev_msg = self.gripper.message
             rospy.sleep(0.05)
 
 
